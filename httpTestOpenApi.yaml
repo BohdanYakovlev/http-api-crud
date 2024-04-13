@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: httpTestOpenAPI
+  description: httpTestOpenAPI
+  version: 1.0.0
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /users:
+    get:
+      summary: GetAllUsersList
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/{id}:
+    get:
+      summary: GetUserById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+#    delete:
+#      summary: DeleteUserById
+#      responses:
+#        '200':
+#          description: Success
+#  /users/{username}/{phone}:
+#    post:
+#      summary: CreateUser
+#      responses:
+#        '200':
+#          description: Success
+#  /users/{id}/{username}/{phone}:
+#    put:
+#      summary: UpdateUserById
+#      responses:
+#        '200':
+#          description: Success
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        phone:
+          type: string
+  
